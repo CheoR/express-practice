@@ -7,6 +7,14 @@ const PORT = 3000;
 // middleware
 app.use(express.static('public'));
 app.use('/images', express.static('images'));
+// app.use(express.json());
+
+// stringify data from client
+// in postman change 
+// content-type: appilcation/json to application/x-www-form-urlencoded
+// and in body select the same value.
+// data should now be passed in key/value
+app.use(express.urlencoded({extended: true}));
 
 // routes
 app.get('/item/:id', (req, res, next) => {
@@ -19,9 +27,15 @@ app.get('/item/:id', (req, res, next) => {
 	console.log('Data sent');
 });
 
-// app.post('/newItem', (req, res) => {
-// 	return res.send(`POST /newItem: request on port ${PORT}`);
-// });
+app.get('/', (req, res) => {
+	return res.json(data)
+});
+
+app.post('/newItem', (req, res) => {
+	// return res.send(`POST /newItem: request on port ${PORT}`);
+	console.log(`POST: ${req.body}`);
+	return res.send(req.body);
+});
 
 // app.put('/item', (req, res) => {
 // 	return res.send(`PUT /item: request on port ${PORT}`);
@@ -31,19 +45,19 @@ app.get('/item/:id', (req, res, next) => {
 // 	return res.send(`DELETE /item: request on port ${PORT}`);
 // });
 
-app.route('/item')
-	.get((req, res,) => {
-			return res.send(`GET /item: request on port ${PORT}`);
-	})
-	.post((req, res) => {
-		return res.send(`POST /newItem: request on port ${PORT}`);
-	})
-	.put((req, res) => {
-		return res.send(`PUT /item: request on port ${PORT}`);
-	})
-	.delete((req, res) => {
-		return res.send(`DELETE /item: request on port ${PORT}`);
-	});
+// app.route('/item')
+// 	.get((req, res,) => {
+// 			return res.send(`GET /item: request on port ${PORT}`);
+// 	})
+// 	.post((req, res) => {
+// 		return res.send(`POST /newItem: request on port ${PORT}`);
+// 	})
+// 	.put((req, res) => {
+// 		return res.send(`PUT /item: request on port ${PORT}`);
+// 	})
+// 	.delete((req, res) => {
+// 		return res.send(`DELETE /item: request on port ${PORT}`);
+// 	});
 
 // serve
 app.listen(PORT, () => {
