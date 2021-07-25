@@ -18,6 +18,7 @@ app.use(express.urlencoded({extended: true}));
 
 // routes
 app.get('/item/:id', (req, res, next) => {
+	throw new Error();
 	const id = Number(req.params.id);
 	console.log(`UserId: ${id}`);
 	console.log(data[id]);
@@ -58,6 +59,12 @@ app.post('/newItem', (req, res) => {
 // 	.delete((req, res) => {
 // 		return res.send(`DELETE /item: request on port ${PORT}`);
 // 	});
+
+// Good idea to put error handlers last before listen
+app.use((err, req, res, next) => {
+	console.error(err.stack);
+	res.status(500).send(`Error on page:\n\t${err.stack}`);
+});
 
 // serve
 app.listen(PORT, () => {
