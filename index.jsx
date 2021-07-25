@@ -14,6 +14,13 @@ app.get('/', (req, res) => {
 	return res.json(data);
 });
 
+app.get('/item/:id', (req, res) => {
+	const id = Number(req.params.id);
+	console.log(`UserId: ${id}`);
+	console.log(data[id]);
+	return res.send(data[id]);
+});
+
 app.post('/newItem', (req, res) => {
 	return res.send(`POST /newItem: request on port ${PORT}`);
 });
