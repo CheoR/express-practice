@@ -14,11 +14,14 @@ app.get('/', (req, res) => {
 	return res.json(data);
 });
 
-app.get('/item/:id', (req, res) => {
+app.get('/item/:id', (req, res, next) => {
 	const id = Number(req.params.id);
 	console.log(`UserId: ${id}`);
 	console.log(data[id]);
 	return res.send(data[id]);
+	next();
+}, (req, res) => {
+	console.log('Data sent');
 });
 
 app.post('/newItem', (req, res) => {
