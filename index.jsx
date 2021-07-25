@@ -19,6 +19,10 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // data should now be passed in key/value
 app.use(express.urlencoded({extended: true}));
 
+// for proxies
+// http://expressjs.com/en/guide/behind-proxies.html#express-behind-proxies
+app.set('trust proxy', 'loopback');
+
 // routes
 app.get('/item/:id', (req, res, next) => {
 	// throw new Error();
