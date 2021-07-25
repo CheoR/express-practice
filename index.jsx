@@ -32,7 +32,8 @@ app.get('/item/:id', (req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-	return res.json(data)
+	// return res.json(data)
+	return res.json({'data': 'data here'})
 });
 
 app.post('/newItem', (req, res) => {

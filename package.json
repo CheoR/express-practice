@@ -4,7 +4,8 @@
   "description": "Practicing building with Express.",
   "main": "index.jsx",
   "scripts": {
-    "start": "nodemon ./index.jsx --exec babel-node -e jsx"
+    "start": "nodemon ./index.jsx --exec babel-node -e jsx",
+    "debug": "DEBUG=express:* nodemon ./index.jsx --exec babel-node -e jsx"
   },
   "repository": {
     "type": "git",
