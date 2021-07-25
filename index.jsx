@@ -1,4 +1,6 @@
 import express from 'express';
+import favicon from 'serve-favicon';
+import path from 'path';
 import data from './data/data.json';
 
 const app = express();
@@ -7,6 +9,7 @@ const PORT = 3000;
 // middleware
 app.use(express.static('public'));
 app.use('/images', express.static('images'));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // app.use(express.json());
 
 // stringify data from client
@@ -18,7 +21,7 @@ app.use(express.urlencoded({extended: true}));
 
 // routes
 app.get('/item/:id', (req, res, next) => {
-	throw new Error();
+	// throw new Error();
 	const id = Number(req.params.id);
 	console.log(`UserId: ${id}`);
 	console.log(data[id]);
